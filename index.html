@@ -11,6 +11,9 @@
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+
 
 
         <title>Frontend Mentor | Interactive card details form</title>
@@ -58,15 +61,15 @@
                             <p class="error-alert">&nbsp</p>
                         </div>
                         <label for="cardnumber">Card Number</label><br>
-                        <input class="card-number" type="text" id="card" name="fname" placeholder="e.g. 1234 5678 9123 0000"><br>
+                        <input class="card-number" type="text" id="number" name="fname" placeholder="e.g. 1234 5678 9123 0000"><br>
                         <p class="error-alert">Wrong format</p>
 
 
                         <div class="row">
                             <div class="col">
                                 <label for="expdate">Exp. Date (MM/YY)</label><br>
-                                <input class="exp-date" type="text" id="exp-date" name="fname" placeholder="MM">
-                                <input class="exp-date" type="text" id="exp-date" name="fname" placeholder="YY"><br>
+                                <input class="exp-date" type="text" id="exp-date-mm" name="fname" placeholder="MM">
+                                <input class="exp-date" type="text" id="exp-date-yy" name="fname" placeholder="YY"><br>
                                 <p class="error-alert">Wrong format</p>
                             </div>
                             <div class="col">
@@ -76,7 +79,8 @@
                             </div>
                         </div>
 
-                        <input class="button" type="submit" value="Confirm">
+                        <!--<input class="button" type="submit" value="Confirm">-->
+                        <div class="button confirm d-flex align-items-center justify-content-center" role="button">Confirm</div>
 
 
                     </form>
@@ -87,12 +91,40 @@
                         <img src="images/icon-complete.svg" alt="complete">
                         <h4>Thank You!</h4>
                         <p>We've added your card details</p>
-                        <input class="button" type="submit" value="Continue">
+                        <button class="button continue">Continue</button>
                     </div>
 
                 </div>
             </div>
         </div>
+
+
+        <script>
+
+            $('.confirm').on('click', function(){
+                $('.thank-you').removeClass('hidden');
+                $('.form').addClass('hidden');
+
+                var cardholderName = $("#name").val();
+                $(".card-name-on-card").text(cardholderName);
+
+                var cardholderNumber = $("#number").val();
+                $(".card-number-on-card").text(cardholderNumber);
+
+                var expDateMM = $("#exp-date-mm").val();
+                var expDateYY = $("#exp-date-yy").val();
+                $(".date-on-card").text(expDateMM+"/"+expDateYY);
+
+                var cvc = $("#cvc").val();
+                $(".cvc-on-card").text(cvc);
+            });
+
+            $('.continue').on('click', function(){
+                $('.form').removeClass('hidden');
+                $('.thank-you').addClass('hidden');
+            });
+
+        </script>
 
 
         <!-- 0000 0000 0000 0000
