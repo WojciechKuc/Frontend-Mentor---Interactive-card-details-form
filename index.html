@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-4 background-image">
+                <div class="col-lg-4 col-md-4 col-sm-12 background-image">
 
 
                     <div class="col-11">
@@ -53,10 +53,10 @@
 
 
                 </div>
-                <div class="col-8 d-flex align-items-center justify-content-center">
+                <div class="col-lg-8 col-md-8 col-sm-12 d-flex align-items-center justify-content-center">
 
 
-                    <form class="form" id="card-submit-form" method="post">
+                    <form class="form" id="card-submit-form" >
 
                         <div class="col">
                             <label class="label" for="cardholder">Cardholder Name</label><br>
@@ -75,17 +75,19 @@
                                 <label class="label" for="expdate">Exp. Date (MM/YY)</label><br>
                                 <input class="exp-date" type="text" id="exp-date-mm" name="fmm" placeholder="MM">
                                 <input class="exp-date" type="text" id="exp-date-yy" name="fyy" placeholder="YY"><br>
-                                <div class="error-alert" id="fmm_validate">&nbsp</div>
+                                <div id="fmm_validate" id="fyy_validate">&nbsp</div>
                             </div>
                             <div class="col">
                                 <label class="label" for="cvc">CVC</label><br>
                                 <input class="cvc" type="text" id="cvc" name="fcvc" placeholder="e.g. 123"><br>
-                                <div class="error-alert">&nbsp</div>
+                                <div id="fcvc_validate">&nbsp</div>
                             </div>
                         </div>
 
-                        <input class="button" type="submit" value="TEST">
-                        <div class="button confirm d-flex align-items-center justify-content-center" role="button" type="submit">Confirm</div>
+
+                        <button class="button test" type="button">BUTTON</button>
+                        <!--<input class="button" type="submit" value="TEST">
+<div class="button test confirm d-flex align-items-center justify-content-center" role="button" type="submit">Confirm</div>-->
 
 
 
@@ -105,6 +107,7 @@
 
 
         <script>
+
             $(function validate() {
 
                 var rules = {
@@ -123,12 +126,20 @@
                         fmm: {
                             minlength: 2,
                             maxlength: 2,
-                            required: true
+                            required: true,
+                            digits: true
                         },
                         fyy: {
                             minlength: 2,
                             maxlength: 2,
-                            required: true
+                            required: true,
+                            digits: true
+                        },
+                        fcvc: {
+                            minlength: 3,
+                            maxlength: 3,
+                            required: true,
+                            digits: true
                         }
                     },
 
@@ -139,8 +150,26 @@
                         fnumber: 
                         {
                             required: "Can't be blank",
-                            pattern: "Only numbers"
-                        }
+                            pattern: "Wrong format, numbers only"
+                        },
+                        fmm: {
+                            minlength: "Min 2 numbers",
+                            maxlength: "Max 2 numbers",
+                            required: "Can't be blank",
+                            digits: "Only digits"
+                        },
+                        fyy: {
+                            minlength: "Min 2 numbers",
+                            maxlength: "Max 2 numbers",
+                            required: "Can't be blank",
+                            digits: "Only digits"
+                        },
+                        fcvc: {
+                            minlength: "Min 3 numbers",
+                            maxlength: "Max 3 numbers",
+                            required: "Can't be blank",
+                            digits: "Only digits"
+                        },
                     },
 
                     errorPlacement: function (error, element) {
@@ -157,25 +186,33 @@
 
                 $('#card-submit-form').validate(rules);
 
+
+                $( ".test" ).click(function() {
+                    let flag = $('#card-submit-form').valid();
+                    if(flag==true){
+                        $('.thank-you').removeClass('hidden');
+                        $('.form').addClass('hidden');
+
+                        var cardholderName = $("#name").val();
+                        $(".card-name-on-card").text(cardholderName);
+
+                        var cardholderNumber = $("#number").val();
+                        $(".card-number-on-card").text(cardholderNumber);
+
+                        var expDateMM = $("#exp-date-mm").val();
+                        var expDateYY = $("#exp-date-yy").val();
+                        $(".date-on-card").text(expDateMM+"/"+expDateYY);
+
+                        var cvc = $("#cvc").val();
+                        $(".cvc-on-card").text(cvc);
+
+                    }else{
+                        return null;
+                    }
+
+                });
             });
 
-            $('.confirm').on('click', function(){
-                $('.thank-you').removeClass('hidden');
-                $('.form').addClass('hidden');
-
-                var cardholderName = $("#name").val();
-                $(".card-name-on-card").text(cardholderName);
-
-                var cardholderNumber = $("#number").val();
-                $(".card-number-on-card").text(cardholderNumber);
-
-                var expDateMM = $("#exp-date-mm").val();
-                var expDateYY = $("#exp-date-yy").val();
-                $(".date-on-card").text(expDateMM+"/"+expDateYY);
-
-                var cvc = $("#cvc").val();
-                $(".cvc-on-card").text(cvc);
-            });
 
             $('.continue').on('click', function(){
                 $('.form').removeClass('hidden');
@@ -185,34 +222,6 @@
 
 
         </script>
-
-
-        <!-- 0000 0000 0000 0000
-Jane Appleseed
-00/00
-
-000
-
-Cardholder Name
-e.g. Jane Appleseed
-
-Card Number
-e.g. 1234 5678 9123 0000
-
-Exp. Date (MM/YY)
-MM
-YY
-
-CVC
-e.g. 123
-
-Confirm
-
-<!-- Completed state start -->
-
-        <!--Thank you!
-We've added your card details
-Continue -->
 
     </body>
 </html>

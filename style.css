@@ -165,9 +165,97 @@ h4{
     font-size: 14px;
     color: hsl(279, 6%, 55%);}
 
+.error {
+    border-color: red;
+}
+
 @media screen and (max-width: 750px) {
-    .card-number-on-card{
-        font-size: 1.4vh;
+
+    .background-image{
+        background-image:url(images/bg-main-mobile.png);
+        height: 200px;
+        width: 100%;
+
+        display: inline-block;
+    }
+
+    .cards{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left:0px;
+        top:0px;
+    }
+
+    .front-card{
+        position: relative;
+        top:110px;
+        left: 0px;
+        width: 280px;
+        z-index: 1;
+    }
+
+    .back-card{
+        position: relative;
+        top: -130px;
+        left: 80px;
+        width: 280px;
 
     }
+
+    .card-logo{
+        width: 15%;
+        position: absolute;
+        top:80%;
+        left:10px;
+        z-index: 1;
+    }
+
+    .card-number-on-card{
+        position: absolute;
+        top:140%;
+        left: 8%;
+        font-size: 2.4vh;
+        letter-spacing: 3.5px;
+        color: hsl(0, 0%, 100%);
+        z-index: 1;
+    }
+
+    .card-name-on-card{
+        position: absolute;
+        top:160%;
+        left: 5%;
+        font-size: 1vh;
+        letter-spacing: 1px;
+        color: hsl(0, 0%, 100%);
+        text-transform: uppercase;
+        width: 86%;
+        z-index: 1;
+    }
+
+    .date-on-card{
+        position: absolute;
+        top:160%;
+        left:76%;
+        font-size: 1vh;
+        letter-spacing: 1px;
+        color: hsl(0, 0%, 100%);
+        z-index: 1;
+    }
+
+    .cvc-on-card{
+        position: absolute;
+        top:-42%;
+        left:94%;
+        font-size: 1.8vh;
+        letter-spacing: 1px;
+        color: hsl(0, 0%, 100%);
+        z-index: 1;
+    }
+    
+    .form{
+        margin-top: 80px;
+    }
+
+
 }
