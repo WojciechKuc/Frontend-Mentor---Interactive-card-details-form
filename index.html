@@ -20,8 +20,6 @@
 
 
         <title>Frontend Mentor | Interactive card details form</title>
-
-        <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     </head>
     <body>
 
@@ -85,9 +83,8 @@
                         </div>
 
 
-                        <button class="button test" type="button">BUTTON</button>
-                        <!--<input class="button" type="submit" value="TEST">
-<div class="button test confirm d-flex align-items-center justify-content-center" role="button" type="submit">Confirm</div>-->
+                        <button class="button test" type="button">Confirm</button>
+
 
 
 
@@ -120,7 +117,7 @@
                         fnumber: {
                             required: true,
                             pattern: /^[\d\s]+$/,
-                            minlength: 16,
+                            minlength: 19,
                             maxlength: 19
                         },
                         fmm: {
@@ -149,6 +146,8 @@
                         },
                         fnumber: 
                         {
+                            minlength: "Too short",
+                            maxlength: "Too long",
                             required: "Can't be blank",
                             pattern: "Wrong format, numbers only"
                         },
